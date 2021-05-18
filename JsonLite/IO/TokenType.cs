@@ -4,7 +4,6 @@
     {
         Zero,
         Digit,
-        Whitespace,
         Colon,
         Comma,
         CurlyOpen,

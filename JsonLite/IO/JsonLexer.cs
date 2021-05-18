@@ -14,7 +14,8 @@ namespace JsonLite.IO
         private char _current = '\0';
         private int _index = -1;
         private readonly List<Token> _tokens = new List<Token>();
-        private readonly char[] _escapeSingleChars = new[] {'n', 'r', 'f', 't', 'b', '\\', '/', '*'};
+
+        private readonly char[] _unicodeChars = {'a', 'b', 'c', 'd', 'e', 'f', 'g', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
         
         internal JsonLexer(string jsonString) //Ref safe due to non-altering operations;
         {
@@ -35,7 +36,7 @@ namespace JsonLite.IO
             {
                 if (Is('{')) Push(TokenType.CurlyOpen);
                 else if (Is('}')) Push(TokenType.CurlyClose);
-                else if (char.IsWhiteSpace(_current)) Push(TokenType.Whitespace);
+                else if (char.IsWhiteSpace(_current)) continue;
                 else if (Is('"')) Push(TokenType.Quote);
                 else if (Is('.')) Push(TokenType.Decimal);
                 else if (Is(',')) Push(TokenType.Comma);
@@ -56,6 +57,11 @@ namespace JsonLite.IO
             return _current == value;
         }
 
+        private bool IsAny(char[] others)
+        {
+            return others.Contains(_current);
+        }
+        
         private void DoWord()
         {
             var sb = new StringBuilder();
@@ -88,15 +94,26 @@ namespace JsonLite.IO
 
         private void DoEscaped()
         {
-            if (LookAheadAny(_escapeSingleChars))
+            if (LookAheadWhitespace()) return;
+            if (LookAhead() == 'u')
             {
                 Next();
-                Push(TokenType.Escaped, "\\" + _current);
-            }else if (LookAheadFor('u'))
-            {
-                DoUnicode();
+                var sb = new StringBuilder();
+                sb.Append("\\u");
+                var uniCount = 0;
+                while (uniCount < 4 && Next())
+                {
+                    uniCount++;
+                    if (!IsAny(_unicodeChars))
+                        throw new JsonParseException($"Invalid unicode sequence at {_index}: {_current}");
+                    sb.Append(_current);
+                }
+                Push(TokenType.Unicode, sb.ToString());
             }
-            throw new JsonParseException($"Invalid escaped sequence after index {_index}: \\{LookAhead()}");
+            else
+            {
+                throw new JsonParseException($"Invalid escaped sequence after index {_index}: \\{LookAhead()}");
+            }
         }
 
         private void DoUnicode()
@@ -153,7 +170,10 @@ namespace JsonLite.IO
 
         private bool LookAheadWhitespace()
         {
-            return char.IsWhiteSpace(LookAhead());
+            var ahead = LookAhead();
+            return (_current == '\\' && 
+                   (ahead == 'n' || ahead == 't' || ahead == 'r' || ahead == 'f')) ||
+                   ahead == ' ';
         }
 
         private bool LookAheadQuote()

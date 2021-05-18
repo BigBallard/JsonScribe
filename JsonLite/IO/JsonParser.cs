@@ -30,10 +30,7 @@ namespace JsonLite.IO
 
         private static JsonObject DoParse()
         {
-            if (LookAheadType(TokenType.Whitespace))
-            {
-                
-            }
+            return null;
         }
 
         private static Token? LookAhead()
