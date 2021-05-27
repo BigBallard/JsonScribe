@@ -11,16 +11,14 @@ namespace JsonLiteTest.IO
         [Order(0)]
         public void ParseEmptyObject()
         {
-            var o = JsonParser.Parse("{ }");
-            Assert.Pass();
+            JsonParser.Parse("{ }");
         }
 
         [Test]
         [Order(1)]
         public void ParseObjectWithStringProperty()
         {
-            var o = JsonParser.Parse(@"{ ""p"": ""value""}");
-            Assert.Pass();
+            JsonParser.Parse(@"{ ""p"": ""value""}");
         }
 
         [Test]
@@ -28,7 +26,6 @@ namespace JsonLiteTest.IO
         public void ParseObjectWithIntProperty()
         {
             JsonParser.Parse(@"{ ""p"": 0 }");
-            Assert.Pass();
         }
 
         [Test]
@@ -36,7 +33,6 @@ namespace JsonLiteTest.IO
         public void ParseObjectWithDoubleProperty()
         {
             JsonParser.Parse(@"{ ""p"": 1.0 }");
-            Assert.Pass();
         }
 
         [Test]
@@ -44,7 +40,6 @@ namespace JsonLiteTest.IO
         public void ParseObjectWithNegativeInt()
         {
             JsonParser.Parse(@"{ ""P"": -1 }");
-            Assert.Pass();
         }
 
         [Test]
@@ -52,7 +47,6 @@ namespace JsonLiteTest.IO
         public void ParseObjectWithNegativeDouble()
         {
             JsonParser.Parse(@"{ ""p"": -1.0 }");
-            Assert.Pass();
         }
     }
 }

@@ -6,18 +6,39 @@ namespace JsonLite
     public sealed class JsonLiteral: JsonElement
     {
         private object _literal;
-        public JsonType JsonType { get; private set; } = JsonType.Null;
         public NumberType NumberType { get; private set; } = NumberType.None;
-
-        public JsonLiteral()
-        {
-        }
         
         private void Init(object literal, JsonType type, NumberType numType = NumberType.None)
         {
             _literal = literal ?? throw new JsonException("Literal cannot be null.");
-            JsonType = type;
+            Type = type;
             NumberType = numType;
+        }
+
+        public static JsonLiteral FromValue(object value)
+        {
+            return new JsonLiteral(value);
+        }
+
+        public JsonLiteral(object value)
+        {
+            switch (value)
+            {
+                case int i:
+                    Init(i, JsonType.Number, NumberType.Integer);
+                    break;
+                case double d:
+                    Init(d, JsonType.Number, NumberType.Double);
+                    break;
+                case string s:
+                    Init(s, JsonType.String);
+                    break;
+                case bool b:
+                    Init(b, JsonType.Boolean);
+                    break;
+                default:
+                    throw new JsonException("object value is not a valid JSON literal.");
+            }
         }
 
         public JsonLiteral(string value) => Init(value, JsonType.String);
@@ -32,8 +53,6 @@ namespace JsonLite
 
         public int AsInt() => (int) _literal;
 
-        public long AsLong() => (long) _literal;
-
         public double AsDouble() => (double) _literal;
 
         public bool AsBoolean() => (bool) _literal;
@@ -42,33 +61,21 @@ namespace JsonLite
 
         public override string ToString()
         {
-            switch (JsonType)
-            {
-                case JsonType.Object:
-                    return ((JsonObject) _literal).ToString();
-                case JsonType.Array:
-                    return ((JsonArray) _literal).ToString();
-                case JsonType.String:
-                    return (string)_literal;
-                case JsonType.Boolean:
-                    return ((bool) _literal).ToString().ToLower();
-                case JsonType.Null:
-                    return "null";
-                case JsonType.Number:
-                    switch (NumberType)
-                    {
-                        case NumberType.None:
-                            return null;
-                        case NumberType.Integer:
-                            return ((int) _literal).ToString();
-                        case NumberType.Double:
-                            return ((double) _literal).ToString(CultureInfo.InvariantCulture);
-                        default:
-                            throw new ArgumentOutOfRangeException();
-                    }
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            if(Type == JsonType.String) return (string)_literal;
+            if(Type == JsonType.Boolean) return ((bool) _literal).ToString().ToLower();
+            if(NumberType == NumberType.Integer) return ((int) _literal).ToString();
+            return ((double) _literal).ToString(CultureInfo.InvariantCulture);
         }
+
+        public override bool Equals(object obj)
+        {
+             if (!(obj is JsonLiteral other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            if (other.Type != Type) return false;
+            if (other.Type != JsonType.Number || Type != JsonType.Number) return other.AsValue() != _literal;
+            if(other.NumberType != NumberType) return false;
+            return other._literal != _literal;
+        }
+        
     }
 }

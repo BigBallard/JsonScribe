@@ -93,8 +93,9 @@ namespace JsonLite.IO
                 {
                     sb.Append(_current.Symbol);
                     Next();
-                    if (_current.TokenType != TokenType.Number && _current.TokenType != TokenType.Zero) throw new JsonParseException("Number after decimal place required.");
+                    if (_current.TokenType != TokenType.Number) throw new JsonParseException("Number after decimal place required.");
                     sb.Append(_current.Symbol);
+                    Next();
                     literal = new JsonLiteral(double.Parse(sb.ToString()));
                 }
                 else
@@ -102,7 +103,6 @@ namespace JsonLite.IO
                     literal = new JsonLiteral(int.Parse(sb.ToString()));
                 }
 
-                Next();
                 return literal;
             }
 

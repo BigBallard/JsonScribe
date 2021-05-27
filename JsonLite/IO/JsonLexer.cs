@@ -77,7 +77,14 @@ namespace JsonLite.IO
         private void DoZero()
         {
             if (LookAheadDigit()) throw new JsonParseException("Numbers cannot lead with '0'.");
-            Push(TokenType.Zero);
+            if (Is('\\'))
+            {
+                DoUnicode();
+            }
+            else
+            {
+                Push(TokenType.Number, "0");
+            }
         }
 
         private void DoNumber()

@@ -2,7 +2,6 @@
 {
     public enum TokenType
     {
-        Zero,
         Colon,
         Comma,
         CurlyOpen,

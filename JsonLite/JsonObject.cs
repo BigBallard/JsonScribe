@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using JsonLite.IO;
 
 namespace JsonLite
 {
@@ -54,6 +56,21 @@ namespace JsonLite
         {
             Set(property, value);
         }
-        
+
+        public List<string> Keys()
+        {
+            return _members.Keys.ToList();
+        }
+
+        public override string ToString()
+        {
+            var writer = new JsonWriter();
+            return writer.Write(this);
+        }
+
+        public override bool Equals(object obj)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
