@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using JsonLite.IO;
+using JsonScribe.IO;
 
-namespace JsonLite
+namespace JsonScribe
 {
     public sealed class JsonObject: JsonElement
     {

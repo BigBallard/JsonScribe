@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
-namespace JsonLite
+namespace JsonScribe
 {
     public static class Extensions
     {

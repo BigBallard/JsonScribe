@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace JsonLite.IO
+namespace JsonScribe.IO
 {
     public class JsonParseException: JsonException
     {

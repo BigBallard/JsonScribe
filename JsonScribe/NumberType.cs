@@ -1,4 +1,4 @@
-﻿namespace JsonLite
+﻿namespace JsonScribe
 {
     public enum NumberType
     {

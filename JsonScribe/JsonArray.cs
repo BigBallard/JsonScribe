@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace JsonLite
+namespace JsonScribe
 {
     public sealed class JsonArray: JsonElement, IEnumerable<JsonElement>
     {

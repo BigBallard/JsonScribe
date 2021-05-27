@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-[assembly: InternalsVisibleTo("JsonLiteTest")]
-namespace JsonLite.IO
+[assembly: InternalsVisibleTo("JsonScribe.Test")]
+namespace JsonScribe.IO
 {
     internal class JsonLexer
     {

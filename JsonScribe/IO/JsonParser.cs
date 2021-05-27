@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 
 [assembly: InternalsVisibleTo("JsonLiteTest")]
-namespace JsonLite.IO
+namespace JsonScribe.IO
 {
     public static class JsonParser
     {

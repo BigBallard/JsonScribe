@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace JsonLite
+﻿namespace JsonScribe
 {
     public abstract class JsonElement
     {

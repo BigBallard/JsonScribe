@@ -1,7 +1,7 @@
-﻿using JsonLite.IO;
+﻿using JsonScribe.IO;
 using NUnit.Framework;
 
-namespace JsonLiteTest.IO
+namespace JsonScribe.Test.IO
 {
     public class JsonLexerTests
     {

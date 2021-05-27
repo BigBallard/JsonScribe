@@ -13,7 +13,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\JsonLite\JsonLite.csproj" />
+      <ProjectReference Include="..\JsonScribe\JsonScribe.csproj" />
     </ItemGroup>
 
 </Project>

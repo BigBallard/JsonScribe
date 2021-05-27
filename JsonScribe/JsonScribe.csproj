@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageVersion>0.0.1</PackageVersion>
+        <Title>JSON Lite</Title>
+        <Authors>Dallas Phillips</Authors>
+        <Description>A very lightweight C# JSON parsing and serialization library.
+
+JSON Scribe is designed to have a minimal footprint on memory while maintaining optimal serialization and parsing speed. The API is designed to be as simple as possible making integration intuitive and fast.</Description>
+        <PackageProjectUrl>https://github.com/DallasP9124/JsonScribe</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/DallasP9124/JsonScribe</RepositoryUrl>
+        <PackageTags>JSON</PackageTags>
+        <PackageLicenseUrl></PackageLicenseUrl>
+        <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <None Include="..\LICENSE.md">
+        <Pack>True</Pack>
+        <PackagePath></PackagePath>
+      </None>
+    </ItemGroup>
+
+</Project>

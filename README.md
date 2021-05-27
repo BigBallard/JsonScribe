@@ -1,9 +1,9 @@
-﻿# JSON Lite
+﻿# JSON Scribe
 __version__: _0.0.1_
 
 A very lightweight C# JSON parsing and serialization library.
 
-JSON LIte is designed to have a minimal footprint on memory while maintaining optimal serialization and parsing speed. The API is designed to be as simple as possible making integration intuitive and fast.
+JSON Scribe is designed to have a minimal footprint on memory while maintaining optimal serialization and parsing speed. The API is designed to be as simple as possible making integration intuitive and fast.
 
 ## Features
 * RFC 1759 compliant grammar

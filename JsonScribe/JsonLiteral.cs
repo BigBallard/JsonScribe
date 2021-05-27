@@ -1,7 +1,6 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Globalization;
 
-namespace JsonLite
+namespace JsonScribe
 {
     public sealed class JsonLiteral: JsonElement
     {

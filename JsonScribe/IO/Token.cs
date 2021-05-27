@@ -1,4 +1,4 @@
-﻿namespace JsonLite.IO
+﻿namespace JsonScribe.IO
 {
     public struct Token
     {

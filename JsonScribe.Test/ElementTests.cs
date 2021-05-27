@@ -1,5 +1,5 @@
 using System;
-using JsonLite;
+using JsonScribe;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
 
