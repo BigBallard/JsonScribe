@@ -1,5 +1,5 @@
 ﻿# JSON Lite
-__version__: _very.early.0_
+__version__: _0.0.1_
 
 A very lightweight C# JSON parsing and serialization library.
 
